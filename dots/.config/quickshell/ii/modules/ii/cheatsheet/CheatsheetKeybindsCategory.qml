@@ -63,11 +63,11 @@ Column {
     property var keyBlacklist: ["SUPER_L", "SUPER_R"]
     property var keySubstitutions: Object.assign({
         "Super": "",
-        "mouse_up": "Scroll ↓",    // ikr, weird
-        "mouse_down": "Scroll ↑",  // trust me bro
-        "mouse:272": "LMB",
-        "mouse:273": "RMB",
-        "mouse:275": "MouseBack",
+        "Mouse_up": "Scroll ↓",    // ikr, weird
+        "Mouse_down": "Scroll ↑",  // trust me bro
+        "Mouse:272": "LMB",
+        "Mouse:273": "RMB",
+        "Mouse:275": "MouseBack",
         "Slash": "/",
         "Hash": "#",
         "Return": "Enter",
@@ -131,7 +131,8 @@ Column {
     }
 
     function transformKey(key) {
-        const replaced = root.keySubstitutions[key] || key;
+        const titleCased = StringUtils.toTitleCase(key);
+        const replaced = root.keySubstitutions[titleCased] || titleCased;
         const denumbered = replaced.replace("1", "<Number>");
         const dedirectioned = denumbered.replace("Left", "<Direction>");
         return dedirectioned;
